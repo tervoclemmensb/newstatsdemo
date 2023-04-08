@@ -130,7 +130,7 @@ significantitersbysamplesize<-subsamplefulldatdfmetasim[subsamplefulldatdfmetasi
 nonsignificantitersbysamplesize<-subsamplefulldatdfmetasim[subsamplefulldatdfmetasim$pval >.05,]
 
 theseiters<-sample(unique(subsamplefulldatdfmetasim$iteri),size=100)
-nstudiesmeta<-round(lseq(5,100,20))
+nstudiesmeta<-seq(5,100,5)
 
 biasedmetabysamplesize<-lapply(bins,function(samplesize){
   #print(samplesize)
@@ -173,7 +173,7 @@ gganimatebiasedmeta<-ggplot()+geom_point(data=biasedmetabysamplesizedf[!(biasedm
   transition_states(nmeta, transition_length = 1, state_length = 10)+
   labs(title= 'Studies at each Sample Size: {closest_state}')
 
-gganimatebiasedmeta<-plotclean(gganimatebiasedmeta)+xlab("\n Sample Size")+ylab("Correlation (r)\n")+theme(text = element_text(size = 32))+theme(legend.position = element_blank())
+gganimatebiasedmeta<-plotclean(gganimatebiasedmeta)+xlab("\n Sample Size")+ylab("Correlation (r)\n")+theme(text = element_text(size = 32))+theme(legend.position = "none")
 
 animobj<-animate(gganimatebiasedmeta, height = 600, width =750)
 
